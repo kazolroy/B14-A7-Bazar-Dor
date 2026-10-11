@@ -9,7 +9,7 @@
 - Tailwind CSS v4 + DaisyUI v5
 - BetterAuth (Email/Password, Google, GitHub) with MongoDB adapter
 - react-hot-toast, Hind Siliguri (Bangla font)
-- Data: `https://openapi.programming-hero.com/api/bazardor`
+- Data: live from `https://openapi.programming-hero.com/api/bazardor` (no local copy)
 
 ## Features
 1. **Live price ticker & hero** – infinite marquee with price and ▲/▼ change; hero CTA smooth-scrolls to `#সব-পণ্য`.
@@ -36,4 +36,3 @@ npm run dev
 ## Deploy (Vercel)
 Import the repo, add the env variables above, deploy. No extra config needed.
 
-> If the public API is unreachable, the app falls back to a bundled copy of the same data (`src/lib/fallback-data.json`).

@@ -1,21 +1,16 @@
-import fallback from "./fallback-data.json";
 import type { Category, Product } from "./types";
 
-const BASE = "https://openapi.programming-hero.com/api/bazardor";
+// Official assignment API. (API_BASE only exists so the base URL can be overridden in tests.)
+const BASE = process.env.API_BASE ?? "https://openapi.programming-hero.com/api/bazardor";
 
-async function getJson<T>(path: string, fallbackValue: T): Promise<T> {
-  try {
-    const res = await fetch(`${BASE}${path}`, { next: { revalidate: 300 } });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return (await res.json()) as T;
-  } catch {
-    // The live API is the source of truth; the bundled copy only keeps the UI alive if it is unreachable.
-    return fallbackValue;
-  }
+async function getJson<T>(path: string): Promise<T> {
+  const res = await fetch(`${BASE}${path}`, { next: { revalidate: 300 } });
+  if (!res.ok) throw new Error(`BazarDor API ${path} failed: HTTP ${res.status}`);
+  return (await res.json()) as T;
 }
 
-export const getProducts = () => getJson<Product[]>("/products", fallback.products as Product[]);
-export const getCategories = () => getJson<Category[]>("/categories", fallback.categories as Category[]);
+export const getProducts = () => getJson<Product[]>("/products");
+export const getCategories = () => getJson<Category[]>("/categories");
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   const all = await getProducts();
