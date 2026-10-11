@@ -1,38 +1,23 @@
 # 🛒 বাজার দর (BazarDor)
 
-প্রয়োজনীয় পণ্যের দাম এক নজরে — চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ ও মসলার আজকের বাজারদর, দাম বাড়া-কমার হিসাব এবং বিভাগভিত্তিক বাজারের তুলনা।
+**প্রয়োজনীয় পণ্যের দাম এক নজরে।**
 
-**Live:** _deploy করার পর এখানে লিংক বসান_
+বাজার দর একটি ওয়েব অ্যাপ, যেখানে চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ ও মসলার আজকের বাজার দর এবং দাম বাড়া-কমার তথ্য দেখা যায়। প্রতিটি পণ্যের জন্য আলাদা বিস্তারিত পেজে বিভিন্ন বাজারের সর্বনিম্ন, সর্বোচ্চ ও গড় দাম পাওয়া যায়।
 
-## Technologies
-- Next.js 16 (App Router) + TypeScript
-- Tailwind CSS v4 + DaisyUI v5
-- BetterAuth (Email/Password, Google, GitHub) with MongoDB adapter
-- react-hot-toast, Hind Siliguri (Bangla font)
-- Data: live from `https://openapi.programming-hero.com/api/bazardor` (no local copy)
+## ✨ প্রধান ফিচার
 
-## Features
-1. **Live price ticker & hero** – infinite marquee with price and ▲/▼ change; hero CTA smooth-scrolls to `#সব-পণ্য`.
-2. **Home sections** – top 6 risers, top 6 fallers, and all products in a responsive grid (Bengali digits, green/red/gray badges).
-3. **Category pages with sorting** – default / price low→high / high→low (numeric sort), skeleton loaders, 404-style empty state.
-4. **Protected product details** – min / max / average price, price history and market-wise prices grouped by division; guests are redirected to sign-in with a toast.
-5. **Authentication** – BetterAuth email/password + Google/GitHub login, validation errors and toasts for every action.
-6. **My Profile + Update information** – update the display name via BetterAuth `updateUser`.
-7. **Fully responsive** with a custom 404 page; dynamic routes work on refresh.
+1. **লাইভ প্রাইস টিকার** — নেভবারের নিচে অবিরাম ঘুরতে থাকা দামের তালিকা (ইমোজি, নাম, দাম, ▲▼ শতাংশ)।
+2. **দাম বাড়া ও কমার সেকশন** — হোম পেজে সবচেয়ে বেশি দাম বাড়া ৬টি এবং কমা ৬টি পণ্য।
+3. **ক্যাটাগরি ও সর্টিং** — ক্যাটাগরি অনুযায়ী পণ্য দেখা এবং দাম অনুযায়ী (কম থেকে বেশি / বেশি থেকে কম) সাজানো।
+4. **পণ্যের বিস্তারিত পেজ** — সর্বনিম্ন, সর্বোচ্চ ও গড় দাম এবং বাজারভিত্তিক দামের টেবিল। এই পেজ দেখতে লগইন করতে হয়।
+5. **সাইন ইন ও সাইন আপ** — BetterAuth দিয়ে ইমেইল-পাসওয়ার্ড লগইন, সাথে টোস্ট নোটিফিকেশন।
+6. **প্রোফাইল আপডেট** — My Profile থেকে নাম পরিবর্তন করা যায়।
+7. **সব ডিভাইসে কাজ করে** — মোবাইল, ট্যাবলেট ও ডেস্কটপে রেসপন্সিভ ডিজাইন, লোডিং স্কেলিটন এবং ৪০৪ পেজ।
 
-## Getting started
-```bash
-npm install
-cp .env.example .env.local   # fill in values
-npm run dev
-```
-| Variable | Purpose |
-|---|---|
-| `BETTER_AUTH_SECRET` | random secret (`openssl rand -base64 32`) |
-| `BETTER_AUTH_URL` | app URL (your Vercel URL in production) |
-| `MONGODB_URI` | MongoDB connection string (required in production; without it users live in memory only) |
-| `GOOGLE_CLIENT_ID/SECRET`, `GITHUB_CLIENT_ID/SECRET` | social login. Callback: `<APP_URL>/api/auth/callback/<provider>` |
+## 🧰 ব্যবহৃত টেকনোলজি
 
-## Deploy (Vercel)
-Import the repo, add the env variables above, deploy. No extra config needed.
-
+- Next.js (App Router)
+- Tailwind CSS ও DaisyUI
+- BetterAuth (অথেনটিকেশন)
+- MongoDB (ইউজার ডেটা)
+- react-hot-toast (নোটিফিকেশন)
