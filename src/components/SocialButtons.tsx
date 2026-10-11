@@ -3,7 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { signIn } from "@/lib/auth-client";
 
-const btn = "flex h-10 items-center justify-center gap-2 rounded-lg border border-line bg-surface px-3 text-sm font-semibold transition hover:bg-soft disabled:opacity-60";
+const btn = "flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-line bg-surface px-2 text-[13px] font-semibold transition hover:bg-soft disabled:opacity-60";
 
 export default function SocialButtons({ callbackURL = "/" }: { callbackURL?: string }) {
   const [busy, setBusy] = useState<string | null>(null);

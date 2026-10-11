@@ -5,6 +5,7 @@ import "@fontsource/hind-siliguri/bengali-600.css";
 import "@fontsource/hind-siliguri/bengali-700.css";
 import "@fontsource/hind-siliguri/latin-400.css";
 import "@fontsource/hind-siliguri/latin-600.css";
+import "@fontsource/noto-color-emoji/emoji-400.css";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";

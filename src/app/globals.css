@@ -25,7 +25,7 @@
   --radius-selector: 0.6rem;
 }
 @theme inline {
-  --font-sans: "Hind Siliguri", system-ui, sans-serif;
+  --font-sans: "Hind Siliguri", "Noto Color Emoji", system-ui, sans-serif;
   --color-surface: #fafcfa;
   --color-line: #e1e8e1;
   --color-soft: #f0f5f0;
@@ -35,7 +35,7 @@
   --color-muted: rgba(29, 39, 31, 0.7);
 }
 html { scroll-behavior: smooth; }
-body { background: #f0f5f0; color: #1d271f; font-family: "Hind Siliguri", system-ui, sans-serif; }
+body { background: #f0f5f0; color: #1d271f; font-family: "Hind Siliguri", "Noto Color Emoji", system-ui, sans-serif; }
 section[id] { scroll-margin-top: 8rem; }
 
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }

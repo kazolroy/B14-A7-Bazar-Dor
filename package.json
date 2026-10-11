@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource/hind-siliguri": "^5.3.0",
+    "@fontsource/noto-color-emoji": "^5.3.2",
     "better-auth": "^1.7.7",
     "daisyui": "^5.7.47",
     "mongodb": "^7.7.0",
