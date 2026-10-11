@@ -6,8 +6,8 @@ export const metadata: Metadata = { title: "সাইন ইন" };
 
 export default function SignInPage() {
   return (
-    <div className="px-4 py-12">
-      <Suspense fallback={<div className="skeleton mx-auto h-96 max-w-md rounded-2xl" />}>
+    <div>
+      <Suspense fallback={<div className="skeleton mx-auto mt-10 h-96 max-w-md rounded-2xl" />}>
         <SignInForm />
       </Suspense>
     </div>

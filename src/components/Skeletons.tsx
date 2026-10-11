@@ -1,6 +1,6 @@
 export function CardSkeleton() {
   return (
-    <div className="rounded-2xl border border-base-300 bg-white p-4">
+    <div className="rounded-2xl border border-line bg-surface p-4">
       <div className="flex items-center gap-3">
         <div className="skeleton h-12 w-12 rounded-xl" />
         <div className="flex-1 space-y-2">

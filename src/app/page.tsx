@@ -12,17 +12,17 @@ export default async function Home() {
   const fallers = products.filter((p) => p.change.pct < 0).sort((a, b) => a.change.pct - b.change.pct).slice(0, 6);
 
   return (
-    <>
+    <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-6">
       <Hero />
-      <Section title="আজ দাম বেড়েছে ▲" subtitle="গতকালের তুলনায় সবচেয়ে বেশি দাম বেড়েছে যেসব পণ্যের">
+      <Section title="আজ দাম বেড়েছে" icon="▲" iconClass="text-up">
         <div className={grid}>{risers.map((p) => <ProductCard key={p.id} product={p} />)}</div>
       </Section>
-      <Section title="আজ দাম কমেছে ▼" subtitle="গতকালের তুলনায় সবচেয়ে বেশি দাম কমেছে যেসব পণ্যের">
+      <Section title="আজ দাম কমেছে" icon="▼" iconClass="text-down">
         <div className={grid}>{fallers.map((p) => <ProductCard key={p.id} product={p} />)}</div>
       </Section>
-      <Section id="সব-পণ্য" title="সব পণ্য" subtitle={`মোট ${toBn(products.length)}টি নিত্যপ্রয়োজনীয় পণ্যের আজকের দাম`}>
+      <Section id="সব-পণ্য" title="সব পণ্য" subtitle={`মোট ${toBn(products.length)}টি পণ্য দেখানো হচ্ছে`}>
         <div className={grid}>{products.map((p) => <ProductCard key={p.id} product={p} />)}</div>
       </Section>
-    </>
+    </div>
   );
 }

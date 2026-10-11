@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { signUp } from "@/lib/auth-client";
 import SocialButtons from "./SocialButtons";
+import AuthShell, { inputCls, labelCls, primaryBtn } from "./AuthShell";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -18,10 +19,12 @@ export default function SignUpForm() {
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
     const password = String(fd.get("password") ?? "");
+    const confirm = String(fd.get("confirm") ?? "");
     const fail = (msg: string) => { setError(msg); toast.error(msg); };
     if (!name) return fail("আপনার নাম লিখুন");
     if (!/^\S+@\S+\.\S+$/.test(email)) return fail("সঠিক ইমেইল দিন");
-    if (password.length < 6) return fail("পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে");
+    if (password.length < 8) return fail("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
+    if (password !== confirm) return fail("দুটি পাসওয়ার্ড মিলছে না");
     setLoading(true);
     const { error } = await signUp.email({ name, email, password });
     setLoading(false);
@@ -31,32 +34,34 @@ export default function SignUpForm() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-2xl border border-base-300 bg-white p-6 shadow-sm sm:p-8">
-      <h1 className="text-2xl font-bold">নতুন অ্যাকাউন্ট খুলুন</h1>
-      <p className="mt-1 text-base-content/60">বিনামূল্যে রেজিস্টার করে সব পণ্যের বিস্তারিত দাম দেখুন</p>
-      <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
-        <label className="form-control block">
-          <span className="mb-1 block text-sm font-medium">নাম</span>
-          <input name="name" type="text" autoComplete="name" placeholder="আপনার নাম" className="input input-bordered w-full" />
-        </label>
-        <label className="form-control block">
-          <span className="mb-1 block text-sm font-medium">ইমেইল</span>
-          <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className="input input-bordered w-full" />
-        </label>
-        <label className="form-control block">
-          <span className="mb-1 block text-sm font-medium">পাসওয়ার্ড</span>
-          <input name="password" type="password" autoComplete="new-password" placeholder="কমপক্ষে ৬ অক্ষর" className="input input-bordered w-full" />
-        </label>
-        {error && <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-sm text-error">{error}</p>}
-        <button type="submit" disabled={loading} className="btn btn-primary w-full">
-          {loading && <span className="loading loading-spinner loading-sm" />} রেজিস্টার
+    <AuthShell title="অ্যাকাউন্ট তৈরি করুন" subtitle="বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।">
+      <form onSubmit={onSubmit} className="space-y-4" noValidate>
+        <div>
+          <label htmlFor="name" className={labelCls}>নাম</label>
+          <input id="name" name="name" type="text" autoComplete="name" placeholder="যেমন: রহিম উদ্দিন" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor="email" className={labelCls}>ইমেইল</label>
+          <input id="email" name="email" type="email" autoComplete="email" placeholder="you@example.com" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor="password" className={labelCls}>পাসওয়ার্ড</label>
+          <input id="password" name="password" type="password" autoComplete="new-password" placeholder="কমপক্ষে ৮ অক্ষর" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor="confirm" className={labelCls}>পাসওয়ার্ড নিশ্চিত করুন</label>
+          <input id="confirm" name="confirm" type="password" autoComplete="new-password" placeholder="আবার লিখুন" className={inputCls} />
+        </div>
+        {error && <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-sm text-up">{error}</p>}
+        <button type="submit" disabled={loading} className={primaryBtn}>
+          {loading && <span className="loading loading-spinner loading-sm" />} অ্যাকাউন্ট তৈরি করুন
         </button>
       </form>
-      <div className="divider text-sm text-base-content/50">অথবা</div>
+      <div className="my-4 flex items-center gap-3 text-xs text-muted"><span className="h-px flex-1 bg-line" />অথবা<span className="h-px flex-1 bg-line" /></div>
       <SocialButtons />
-      <p className="mt-6 text-center text-sm text-base-content/70">
-        আগেই অ্যাকাউন্ট আছে? <Link href="/signin" className="font-semibold text-primary hover:underline">সাইন ইন করুন</Link>
+      <p className="mt-4 text-center text-sm">
+        অ্যাকাউন্ট আছে? <Link href="/signin" className="text-brand hover:underline">সাইন ইন করুন</Link>
       </p>
-    </div>
+    </AuthShell>
   );
 }

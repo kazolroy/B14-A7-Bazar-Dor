@@ -36,3 +36,8 @@ export function bnDate(date = new Date()): string {
     timeZone: "Asia/Dhaka",
   }).format(date);
 }
+
+/** Average price: whole numbers stay whole, halves show two decimals (৬০.৫০). */
+export function bnAvg(n: number): string {
+  return Number.isInteger(n) ? bnPrice(n) : toBn(n.toFixed(2));
+}

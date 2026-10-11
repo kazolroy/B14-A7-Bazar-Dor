@@ -27,6 +27,6 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET || "dev-only-secret-change-me-in-production-0123456789",
   baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || undefined,
   trustedOrigins: process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`, "https://*.vercel.app"] : undefined,
-  emailAndPassword: { enabled: true, autoSignIn: false, minPasswordLength: 6 },
+  emailAndPassword: { enabled: true, autoSignIn: false, minPasswordLength: 8 },
   socialProviders: social,
 });

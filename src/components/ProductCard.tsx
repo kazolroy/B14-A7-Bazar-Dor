@@ -7,21 +7,19 @@ export default function ProductCard({ product: p }: { product: Product }) {
   return (
     <Link
       href={`/product/${p.slug}`}
-      className="group block rounded-2xl border border-base-300 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md focus-visible:outline-2 focus-visible:outline-primary"
+      className="block rounded-2xl border border-line bg-surface p-4 transition hover:border-brand/50 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-brand"
     >
       <div className="flex items-center gap-3">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent text-3xl" aria-hidden>
-          {p.image}
-        </span>
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-soft text-2xl" aria-hidden>{p.image}</span>
         <div className="min-w-0">
-          <h3 className="truncate text-lg font-semibold leading-tight group-hover:text-primary">{p.nameBn}</h3>
-          <p className="text-sm text-base-content/60">{unitLabel(p.unit)}</p>
+          <h3 className="truncate text-base font-semibold leading-6">{p.nameBn}</h3>
+          <p className="text-xs leading-4 text-muted">{unitLabel(p.unit)}</p>
         </div>
       </div>
-      <div className="mt-4 flex items-center justify-between rounded-xl bg-base-200 px-3 py-2.5">
+      <div className="mt-3 flex items-end justify-between">
         <div>
-          <p className="text-xs text-base-content/60">আজকের দাম</p>
-          <p className="text-lg font-bold">{bnPrice(p.today)} টাকা</p>
+          <p className="text-xs leading-4 text-muted">আজকের দাম</p>
+          <p className="leading-7"><span className="text-xl font-bold">{bnPrice(p.today)}</span> <span className="text-sm">টাকা</span></p>
         </div>
         <ChangeBadge change={p.change} />
       </div>

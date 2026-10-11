@@ -1,8 +1,23 @@
 import { changeInfo } from "@/lib/bn";
 
-export default function ChangeBadge({ change, className = "" }: { change: { dir: string; pct: number }; className?: string }) {
+const TONE = { up: "text-up", down: "text-down", flat: "text-[#1d271f]/60" } as const;
+
+/** Price change. Figma colours a price rise red (▲) and a fall green (▼). */
+export default function ChangeBadge({
+  change,
+  variant = "pill",
+  className = "",
+}: {
+  change: { dir: string; pct: number };
+  variant?: "pill" | "text";
+  className?: string;
+}) {
   const { dir, text } = changeInfo(change);
-  const tone =
-    dir === "up" ? "bg-green-100 text-green-700" : dir === "down" ? "bg-red-100 text-red-700" : "bg-gray-100 text-gray-600";
-  return <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold sm:text-sm ${tone} ${className}`}>{text}</span>;
+  const tone = TONE[dir as keyof typeof TONE];
+  if (variant === "text") return <span className={`font-semibold ${tone} ${className}`}>{text}</span>;
+  return (
+    <span className={`inline-flex items-center rounded-full bg-soft px-2 py-1 text-xs font-semibold leading-4 ${tone} ${className}`}>
+      {text}
+    </span>
+  );
 }

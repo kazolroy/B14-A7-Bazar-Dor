@@ -4,13 +4,13 @@
   name: "bazar";
   default: true;
   color-scheme: light;
-  --color-base-100: #ffffff;
+  --color-base-100: #fafcfa;
   --color-base-200: #f0f5f0;
   --color-base-300: #e1e8e1;
   --color-base-content: #1d271f;
-  --color-primary: #1a9951;
+  --color-primary: #05893e;
   --color-primary-content: #ffffff;
-  --color-secondary: #05893e;
+  --color-secondary: #047f39;
   --color-secondary-content: #ffffff;
   --color-accent: #f3fbf4;
   --color-accent-content: #1d271f;
@@ -26,10 +26,17 @@
 }
 @theme inline {
   --font-sans: "Hind Siliguri", system-ui, sans-serif;
+  --color-surface: #fafcfa;
+  --color-line: #e1e8e1;
+  --color-soft: #f0f5f0;
+  --color-brand: #05893e;
+  --color-up: #d03739;
+  --color-down: #1a9951;
+  --color-muted: rgba(29, 39, 31, 0.7);
 }
 html { scroll-behavior: smooth; }
 body { background: #f0f5f0; color: #1d271f; font-family: "Hind Siliguri", system-ui, sans-serif; }
-section[id] { scroll-margin-top: 7rem; }
+section[id] { scroll-margin-top: 8rem; }
 
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee-track { display: flex; width: max-content; animation: marquee 70s linear infinite; }

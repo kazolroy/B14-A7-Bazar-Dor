@@ -17,14 +17,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     return <NotFoundView message="এই ধরনের কোনো পণ্য খুঁজে পাওয়া যায়নি।" />;
   }
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
-      <div className="mb-6 flex items-center gap-3">
-        <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-3xl shadow-sm" aria-hidden>{data.category.icon}</span>
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6">
+      <header className="flex items-center gap-3 rounded-2xl border border-line bg-surface p-5">
+        <span className="text-4xl" aria-hidden>{data.category.icon}</span>
         <div>
-          <h1 className="text-3xl font-bold">{data.category.nameBn}</h1>
-          <p className="text-base-content/60">{toBn(data.products.length)}টি পণ্যের আজকের দাম</p>
+          <h1 className="text-2xl font-bold leading-8">{data.category.nameBn}</h1>
+          <p className="text-sm text-muted">{toBn(data.products.length)}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
         </div>
-      </div>
+      </header>
       <CategoryList products={data.products} />
     </div>
   );

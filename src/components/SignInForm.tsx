@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { signIn } from "@/lib/auth-client";
 import SocialButtons from "./SocialButtons";
+import AuthShell, { inputCls, labelCls, primaryBtn } from "./AuthShell";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -47,28 +48,26 @@ export default function SignInForm() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-2xl border border-base-300 bg-white p-6 shadow-sm sm:p-8">
-      <h1 className="text-2xl font-bold">সাইন ইন করুন</h1>
-      <p className="mt-1 text-base-content/60">আপনার বাজার দর অ্যাকাউন্টে প্রবেশ করুন</p>
-      <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
-        <label className="form-control block">
-          <span className="mb-1 block text-sm font-medium">ইমেইল</span>
-          <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className="input input-bordered w-full" />
-        </label>
-        <label className="form-control block">
-          <span className="mb-1 block text-sm font-medium">পাসওয়ার্ড</span>
-          <input name="password" type="password" autoComplete="current-password" placeholder="••••••" className="input input-bordered w-full" />
-        </label>
-        {error && <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-sm text-error">{error}</p>}
-        <button type="submit" disabled={loading} className="btn btn-primary w-full">
+    <AuthShell title="সাইন ইন" subtitle="বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।">
+      <form onSubmit={onSubmit} className="space-y-4" noValidate>
+        <div>
+          <label htmlFor="email" className={labelCls}>ইমেইল</label>
+          <input id="email" name="email" type="email" autoComplete="email" placeholder="you@example.com" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor="password" className={labelCls}>পাসওয়ার্ড</label>
+          <input id="password" name="password" type="password" autoComplete="current-password" placeholder="কমপক্ষে ৮ অক্ষর" className={inputCls} />
+        </div>
+        {error && <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-sm text-up">{error}</p>}
+        <button type="submit" disabled={loading} className={primaryBtn}>
           {loading && <span className="loading loading-spinner loading-sm" />} সাইন ইন
         </button>
       </form>
-      <div className="divider text-sm text-base-content/50">অথবা</div>
+      <div className="my-4 flex items-center gap-3 text-xs text-muted"><span className="h-px flex-1 bg-line" />অথবা<span className="h-px flex-1 bg-line" /></div>
       <SocialButtons callbackURL={callbackUrl} />
-      <p className="mt-6 text-center text-sm text-base-content/70">
-        নতুন ব্যবহারকারী? <Link href="/signup" className="font-semibold text-primary hover:underline">সাইন আপ করুন</Link>
+      <p className="mt-4 text-center text-sm">
+        অ্যাকাউন্ট নেই? <Link href="/signup" className="text-brand hover:underline">সাইন আপ করুন</Link>
       </p>
-    </div>
+    </AuthShell>
   );
 }
