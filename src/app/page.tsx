@@ -4,7 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import { getProducts } from "@/lib/api";
 import { toBn } from "@/lib/bn";
 
-const grid = "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
+const grid = "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3";
 
 export default async function Home() {
   const products = await getProducts();
