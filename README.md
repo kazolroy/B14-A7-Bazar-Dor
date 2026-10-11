@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর (BazarDor)
 
-## Getting Started
+প্রয়োজনীয় পণ্যের দাম এক নজরে — চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ ও মসলার আজকের বাজারদর, দাম বাড়া-কমার হিসাব এবং বিভাগভিত্তিক বাজারের তুলনা।
 
-First, run the development server:
+**Live:** _deploy করার পর এখানে লিংক বসান_
 
+## Technologies
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4 + DaisyUI v5
+- BetterAuth (Email/Password, Google, GitHub) with MongoDB adapter
+- react-hot-toast, Hind Siliguri (Bangla font)
+- Data: `https://openapi.programming-hero.com/api/bazardor`
+
+## Features
+1. **Live price ticker & hero** – infinite marquee with price and ▲/▼ change; hero CTA smooth-scrolls to `#সব-পণ্য`.
+2. **Home sections** – top 6 risers, top 6 fallers, and all products in a responsive grid (Bengali digits, green/red/gray badges).
+3. **Category pages with sorting** – default / price low→high / high→low (numeric sort), skeleton loaders, 404-style empty state.
+4. **Protected product details** – min / max / average price, price history and market-wise prices grouped by division; guests are redirected to sign-in with a toast.
+5. **Authentication** – BetterAuth email/password + Google/GitHub login, validation errors and toasts for every action.
+6. **My Profile + Update information** – update the display name via BetterAuth `updateUser`.
+7. **Fully responsive** with a custom 404 page; dynamic routes work on refresh.
+
+## Getting started
 ```bash
+npm install
+cp .env.example .env.local   # fill in values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+| Variable | Purpose |
+|---|---|
+| `BETTER_AUTH_SECRET` | random secret (`openssl rand -base64 32`) |
+| `BETTER_AUTH_URL` | app URL (your Vercel URL in production) |
+| `MONGODB_URI` | MongoDB connection string (required in production; without it users live in memory only) |
+| `GOOGLE_CLIENT_ID/SECRET`, `GITHUB_CLIENT_ID/SECRET` | social login. Callback: `<APP_URL>/api/auth/callback/<provider>` |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy (Vercel)
+Import the repo, add the env variables above, deploy. No extra config needed.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> If the public API is unreachable, the app falls back to a bundled copy of the same data (`src/lib/fallback-data.json`).

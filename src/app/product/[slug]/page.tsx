@@ -3,7 +3,7 @@ import Link from "next/link";
 import NotFoundView from "@/components/NotFoundView";
 import ChangeBadge from "@/components/ChangeBadge";
 import { getProductBySlug, marketStats } from "@/lib/api";
-import { bnPrice, toBn, unitLabel, unitShort } from "@/lib/bn";
+import { bnPrice, toBn, unitLabel } from "@/lib/bn";
 import { requireSession } from "@/lib/session";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -23,7 +23,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     return acc;
   }, {});
   const diff = p.today - p.yesterday;
-  const summary = `${p.nameBn} আজ ${unitShort(p.unit)} প্রতি ${bnPrice(p.today)} টাকায় বিক্রি হচ্ছে — গতকাল ছিল ${bnPrice(p.yesterday)} টাকা${
+  const summary = `${p.nameBn} আজ ${unitLabel(p.unit)} ${bnPrice(p.today)} টাকায় বিক্রি হচ্ছে — গতকাল ছিল ${bnPrice(p.yesterday)} টাকা${
     diff === 0 ? "; দাম অপরিবর্তিত।" : diff > 0 ? `; ${bnPrice(diff)} টাকা বেড়েছে।` : `; ${bnPrice(-diff)} টাকা কমেছে।`
   }`;
 
