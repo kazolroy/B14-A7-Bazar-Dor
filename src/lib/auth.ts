@@ -29,4 +29,10 @@ export const auth = betterAuth({
   trustedOrigins: process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`, "https://*.vercel.app"] : undefined,
   emailAndPassword: { enabled: true, autoSignIn: false, minPasswordLength: 8 },
   socialProviders: social,
+  account: {
+  accountLinking: {
+    enabled: true,
+    trustedProviders: ["github", "google"],
+  },
+},
 });
