@@ -6,7 +6,7 @@ export default function Hero() {
     <section className="overflow-hidden rounded-3xl border border-line bg-surface">
       <div className="flex flex-col items-center gap-6 px-4 py-8 md:flex-row md:justify-between md:py-10">
         <div className="max-w-xl self-start md:self-center">
-          <p className="mb-2 inline-block rounded-full bg-brand/10 px-3 py-1 text-sm font-medium text-brand" suppressHydrationWarning>{bnDate()}</p>
+          <p className="mb-3 inline-block rounded-full bg-brand/15 px-4 py-1.5 text-base font-semibold text-[#03632c]" suppressHydrationWarning>{bnDate()}</p>
           <h1 className="text-3xl font-bold leading-tight sm:text-4xl">আজকের বাজারের দাম এক নজরে</h1>
           <p className="mt-3 text-base leading-6 text-muted">
             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বোচ্চ এবং দামের পরিবর্তন এক জায়গায়।

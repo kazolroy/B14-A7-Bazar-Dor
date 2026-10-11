@@ -39,7 +39,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand text-lg text-white" aria-hidden>🛒</span>
           <span className="leading-tight">
             <span className="block text-lg font-bold">বাজার দর</span>
-            <span className="block text-xs text-muted" suppressHydrationWarning>{bnDate()}</span>
+            <span className="block text-xs font-medium text-[#1d271f]/80" suppressHydrationWarning>{bnDate()}</span>
           </span>
         </Link>
 
